@@ -14,6 +14,23 @@ import UIKit
     @objc optional var scrollView: UIScrollView { get }
 }
 
+open extension SegementSlideContentScrollViewDelegate {
+    /// Notifies the farthest SegementSlideViewController about the changes in the content scroll view.
+    func segementSlideContentScrollViewDidChange() {
+        var farthestSegementSlide: SegementSlideViewController?
+        var currentViewController: UIViewController = self
+        
+        while let parentViewController = currentViewController.parent {
+            if let segementSlide = parentViewController as? SegementSlideViewController {
+                farthestSegementSlide = segementSlide
+            }
+            currentViewController = parentViewController
+        }
+        
+        farthestSegementSlide?.updateChildViewControllerScrollView()
+    }
+}
+
 public protocol SegementSlideContentDelegate: class {
     var segementSlideContentScrollViewCount: Int { get }
     
