@@ -14,7 +14,7 @@ import UIKit
     @objc optional var scrollView: UIScrollView { get }
 }
 
-open extension SegementSlideContentScrollViewDelegate {
+public extension SegementSlideContentScrollViewDelegate {
     /// Notifies the farthest SegementSlideViewController about the changes in the content scroll view.
     func segementSlideContentScrollViewDidChange() {
         var farthestSegementSlide: SegementSlideViewController?
